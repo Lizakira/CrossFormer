@@ -19,59 +19,6 @@ pip install -r requirements.txt
 A step-by-step tutorial is available in [`tutorial.ipynb`](tutorial.ipynb), 
 covering data loading, model training, and generation.
 
-
-## Performance comparison on multi-omics datasets
-
-Best results are shown in **bold**.
-
-> **Note.** A task denotes a cross-omic generation setting, where the modality before the arrow is used as input and the modality after the arrow is generated as the target output.
-
-### CCLE — Bulk RNA-seq → Metabolomics
-
-| Model | Pearson r ↑ | Spearman ρ ↑ | R² ↑ | MAE ↓ | RMSE ↓ |
-|---|---:|---:|---:|---:|---:|
-| CVAE | 0.242 ± 0.008 | 0.245 ± 0.008 | 0.024 ± 0.002 | 0.277 ± 0.001 | 0.384 ± 0.001 |
-| UnitedNet | 0.248 ± 0.008 | 0.235 ± 0.006 | 0.053 ± 0.006 | 0.275 ± 0.001 | 0.376 ± 0.002 |
-| *CrossFormer* | **0.369 ± 0.002** | **0.344 ± 0.003** | **0.111 ± 0.004** | **0.263 ± 0.001** | **0.364 ± 0.001** |
-
-### TCGA-LUAD_1 — Bulk RNA-seq → miRNA
-
-| Model | Pearson r ↑ | Spearman ρ ↑ | R² ↑ | MAE ↓ | RMSE ↓ |
-|---|---:|---:|---:|---:|---:|
-| CVAE | 0.497 ± 0.002 | 0.422 ± 0.002 | 0.216 ± 0.005 | 0.642 ± 0.007 | 0.881 ± 0.001 |
-| miRSCAPE | 0.499 ± 0.013 | 0.472 ± 0.005 | 0.236 ± 0.020 | 0.602 ± 0.015 | 0.835 ± 0.029 |
-| UnitedNet | 0.409 ± 0.017 | 0.464 ± 0.011 | 0.196 ± 0.012 | 0.635 ± 0.005 | 0.885 ± 0.006 |
-| *CrossFormer* | **0.552 ± 0.002** | **0.500 ± 0.003** | **0.289 ± 0.002** | **0.594 ± 0.001** | **0.810 ± 0.001** |
-
-### TCGA-BRCA — Bulk RNA-seq → Proteomics
-
-| Model | Pearson r ↑ | Spearman ρ ↑ | R² ↑ | MAE ↓ | RMSE ↓ |
-|---|---:|---:|---:|---:|---:|
-| CVAE | 0.317 ± 0.002 | 0.315 ± 0.001 | 0.097 ± 0.012 | 0.361 ± 0.001 | 0.551 ± 0.001 |
-| scButterfly | 0.330 ± 0.004 | 0.331 ± 0.006 | 0.068 ± 0.003 | 0.375 ± 0.001 | 0.572 ± 0.001 |
-| UnitedNet | 0.314 ± 0.007 | 0.335 ± 0.006 | 0.073 ± 0.006 | 0.368 ± 0.002 | 0.555 ± 0.003 |
-| *CrossFormer* | **0.412 ± 0.002** | **0.396 ± 0.003** | **0.149 ± 0.003** | **0.340 ± 0.001** | **0.529 ± 0.002** |
-
-### TCGA-LUAD_2 — Bulk RNA-seq → Proteomics
-
-| Model | Pearson r ↑ | Spearman ρ ↑ | R² ↑ | MAE ↓ | RMSE ↓ |
-|---|---:|---:|---:|---:|---:|
-| CVAE | 0.302 ± 0.007 | 0.335 ± 0.014 | 0.049 ± 0.012 | 0.319 ± 0.002 | 0.504 ± 0.001 |
-| scButterfly | 0.333 ± 0.010 | 0.329 ± 0.010 | 0.056 ± 0.004 | 0.319 ± 0.001 | 0.496 ± 0.002 |
-| UnitedNet | 0.322 ± 0.013 | 0.330 ± 0.018 | 0.053 ± 0.016 | 0.313 ± 0.003 | 0.494 ± 0.005 |
-| *CrossFormer* | **0.429 ± 0.002** | **0.420 ± 0.001** | **0.141 ± 0.006** | **0.293 ± 0.001** | **0.461 ± 0.002** |
-
-### CBMC — scRNA-seq → Proteomics
-
-| Model | Pearson r ↑ | Spearman ρ ↑ | R² ↑ | MAE ↓ | RMSE ↓ |
-|---|---:|---:|---:|---:|---:|
-| CVAE | 0.718 ± 0.002 | 0.649 ± 0.002 | 0.517 ± 0.003 | 0.503 ± 0.003 | 0.682 ± 0.003 |
-| scButterfly | 0.571 ± 0.017 | 0.569 ± 0.016 | 0.168 ± 0.004 | 0.617 ± 0.003 | 0.794 ± 0.003 |
-| UnitedNet | 0.712 ± 0.002 | 0.618 ± 0.002 | 0.503 ± 0.009 | 0.511 ± 0.007 | 0.691 ± 0.007 |
-| sciPENN | 0.758 ± 0.002 | **0.826 ± 0.002** | **0.548 ± 0.002** | **0.478 ± 0.001** | 0.680 ± 0.002 |
-| *CrossFormer* | **0.762 ± 0.002** | 0.733 ± 0.001 | 0.536 ± 0.002 | 0.483 ± 0.001 | **0.667 ± 0.003** |
-
-
 ## Pipeline overview
 
 1. **Feature clustering**  
